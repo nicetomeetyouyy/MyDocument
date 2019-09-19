@@ -369,7 +369,7 @@ public ModelAndView returnMAV(){
 
     
 
-    #### 9.2 文件上传
+#### 9.2 文件上传
 
 * 在<form>中的enctype模式值是application/x-www-form-urlencoded，（少量文字信息）
 
@@ -414,4 +414,71 @@ public ModelAndView returnMAV(){
     
 
    
+### 10.自定义拦截器
+
+  ####  作用范围：
+
+    发送**请求**通过控制器方法时进行拦截（Controller)。
+
+#### 实现步骤:
+
+* 类实现Handler Intercepter
+
+  ```java
+  public class DemoIntercept implements HandlerInterceptor {
+    /*
+    * 在进入控制器方法前执行
+    * */
+      @Override
+      public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+          System.out.println("preHandle");
+          return true;
+      }
+  /*
+  * 在控制器方法执行后进入jsp页面前执行
+  * */
+      @Override
+      public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+          System.out.println("postHandle");
+      }
+  /*
+  * 在进入jsp页面后执行，可以搜集异常信息
+  * */
+      @Override
+      public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+       System.out.println("afterCompletion");
+      }
+  }
+  ```
+
+* 在Springmvc配置文件中配置拦截器需要拦截的控制器
+
+  ```xml
+  <!--    全局拦截器配置-->
+      <mvc:interceptors>
+          <bean class="com.xjm.intercept.DemoIntercept"></bean>
+      </mvc:interceptors>
+  <!--    配置单个控制器-->
+  <mvc:interceptors>
+      <mvc:interceptor>
+          <mvc:mapping path="/mav"/>
+          <bean class="com.xjm.intercept.DemoIntercept"></bean>
+      </mvc:interceptor>
+  </mvc:interceptors>
+  
+  ```
+
+#### 拦截器栈
+
+多个拦截器生效时就形成了拦截器栈
+
+执行顺序与SpringMVC配置文件的拦截器顺序有关，先进后出
+
+例如：先配置A再配置B的顺序为：
+
+![1568599815568](picture/1568599815568.png)
+
+
+
+
 
