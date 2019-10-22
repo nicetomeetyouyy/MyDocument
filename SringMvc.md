@@ -16,7 +16,7 @@
 *  HandlerMapping: 解析请求格式的.判断希望要执行哪个具体
   的方法
 * HandlerAdapter: 负责调用具体的方法.
-* 4ViewResovler:视图解析器.解析结果,准备跳转到具体的物理视
+* ViewResovler:视图解析器.解析结果,准备跳转到具体的物理视
   图
 
 ![1568166658497](picture/1568166658497.png)
@@ -422,7 +422,7 @@ public ModelAndView returnMAV(){
 
 #### 实现步骤:
 
-* 类实现Handler Intercepter
+* 类实现HandlerIntercepter
 
   ```java
   public class DemoIntercept implements HandlerInterceptor {
