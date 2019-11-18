@@ -48,6 +48,7 @@
 ### 5.ZSET类型和一些常用命令
  类似于Set,不同的是Sorted中的每个成员都分配了一个分数（Score）用于对其中的成员进行排序（升序）。
 zset的成员是唯一的,但分数(score)却可以重复
+
 * zadd key score member ：设置， 存在就更新
 * zscore key member：查看score值
 * zrange key start stop[withscores]：按索引返回key的成员，withscores表示显示score
@@ -56,7 +57,7 @@ zset的成员是唯一的,但分数(score)却可以重复
 * zremrangebyrank min max：删除集合中索引在给定区间的元素
 * zremrangebyscore  min max：删除集合中 score 在给定区间的元素
 
-### 6 redis持久化RDB和AOP
+### 6 redis持久化RDB和AOF
 Redis持久化分为RDB持久化和AOF持久化：前者将当前数据保存到硬盘，后者则是将每次执行的写命令保存到硬盘（SET）
 #### 6.1 RDB持久化
 RDB持久化是将当前进程中的数据生成快照保存到硬盘(因此也称作快照持久化)，保存的默认文件dump.rdb；当Redis重新启动时，读取此快照文件恢复数据。
@@ -121,7 +122,7 @@ RDB持久化是将当前进程中的数据生成快照保存到硬盘(因此也�
 
 * Master接到命令启动后的存盘进程，同时收集所有接收到的用于修改数据集命令，在后台进程执行完毕之后，master将传送整个数据文件到slave，以完成一次完全同步；
 
-* 全量复制：slave服务在受到数据库文件数据后，将其存盘并加载到内存中；
+* 全量复制：slave服务在收到数据库文件数据后，将其存盘并加载到内存中；
 
 * 增量复制：Master继续将新的所有收集到的修改命令依次传给slave，完成同步；
 

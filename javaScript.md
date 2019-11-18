@@ -142,7 +142,7 @@
   | document.replaceChild(*element*)  | 替换 HTML 元素   |
   | document.write(*text*)            | 写入 HTML 输出流 |
 
-* 添加书剑处理程序
+* 添加鼠键处理程序
 
   | 方法                                                     | 描述                            |
   | :------------------------------------------------------- | :------------------------------ |
@@ -220,7 +220,7 @@
 
 | 方法                         | 描述                                                         |
 | :--------------------------- | :----------------------------------------------------------- |
-| open(*method*,*url*,*async*) | 规定请求的类型、URL 以及是否异步处理请求。*method*：请求的类型；GET 或 POST*url*：文件在服务器上的位置*async*：true（异步）或 false（同步） |
+| open(*method*,*url*,*async*) | 规定请求的类型、URL 以及是否异步处理请求。*method*：请求的类型；GET 或 POST；*url*：文件在服务器上的位置*async*：true（异步）或 false（同步） |
 | send(*string*)               | 将请求发送到服务器。*string*：仅用于 POST 请求               |
 
 如果需要像 HTML 表单那样 POST 数据，请使用 setRequestHeader() 来添加 HTTP 头

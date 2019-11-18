@@ -18,7 +18,7 @@ ApplicationContext ac =new ClassPathXmlApplicationContext（"路径\\xml配置�
   
   读取注解创建容器
 #### 2.两个容器接口区别
-* ApplicationCont在构建容器时，采用立即加载方式，读取完配置文件马上创建配置文件中的对象，适用**单例模式**，但此接口可根据对象决定是否立即加载
+* ApplicationContext在构建容器时，采用立即加载方式，读取完配置文件马上创建配置文件中的对象，适用**单例模式**，但此接口可根据对象决定是否立即加载
    * **bean 配置scpoe属性指定bean的作用范围**
        * singleton:单例
        * prototype:多例
